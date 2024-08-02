@@ -7,6 +7,7 @@ interface Props {
 }
 
 function ListGroup({ items, heading, onSelectItem }: Props) {
+  // State to track which item is selected
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const clickListItem = (value: string, index: number) => {

@@ -1,25 +1,17 @@
-import ListGroup from "./components/ListGroup";
+import Alert, { AlertProps } from "./components/Alert";
 
 function App() {
-  let items = [
-    "New York, USA",
-    "Tokyo, Japan",
-    "Paris, France",
-    "Sydney, Australia",
-    "Cape Town, South Africa",
+  const alertData: AlertProps[] = [
+    { type: "success", message: "This is a success alert!" },
+    { type: "error", message: "This is an error alert!" },
+    { type: "warning", message: "This is a warning alert!" },
+    { type: "info", message: "This is an info alert!" },
   ];
-
-  const onListItemSelect = (item: string) => {
-    console.log("Selected Item: " + item);
-  };
-
   return (
     <div>
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectItem={onListItemSelect}
-      ></ListGroup>
+      {alertData.map((alert, index) => (
+        <Alert key={index} type={alert.type} message={alert.message}></Alert>
+      ))}
     </div>
   );
 }
