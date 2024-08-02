@@ -9,9 +9,17 @@ function App() {
     "Cape Town, South Africa",
   ];
 
+  const onListItemSelect = (item: string) => {
+    console.log("Selected Item: " + item);
+  };
+
   return (
     <div>
-      <ListGroup items={items} heading="Cities"></ListGroup>
+      <ListGroup
+        items={items}
+        heading="Cities"
+        onSelectItem={onListItemSelect}
+      ></ListGroup>
     </div>
   );
 }
