@@ -1,42 +1,44 @@
-import { Button, MantineProvider } from "@mantine/core";
-import Alert, { AlertProps } from "./components/Alert";
-import MyButton from "./components/MyButton";
-import { IconPhoto } from "@tabler/icons-react";
+import { Alert, Button, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import { IconInfoCircle } from "@tabler/icons-react";
+import { useState } from "react";
 
 function App() {
-  const alertData: AlertProps[] = [
-    { type: "success", message: "This is a success alert!" },
-    { type: "error", message: "This is an error alert!" },
-    { type: "warning", message: "This is a warning alert!" },
-    { type: "info", message: "This is an info alert!" },
-  ];
+  const [alertVisible, setAlertVisible] = useState(false);
+
+  const onButtonClick = () => {
+    console.log("onButtonClick");
+    setAlertVisible(true);
+  };
+
+  const onAlertClose = () => {
+    setAlertVisible(false);
+  };
+  const infoIcon = <IconInfoCircle></IconInfoCircle>
+
   return (
-    <>
-      <MantineProvider>
-        <div>
-          {alertData.map((alert, index) => (
-            <Alert
-              key={index}
-              type={alert.type}
-              message={alert.message}
-            ></Alert>
-          ))}
-        </div>
+    <MantineProvider>
+      <div className="mx-auto max-w-md p-4">
+        {alertVisible && (
+          <Alert
+            icon={infoIcon}
+            title="Alert Title"
+            variant="light"
+            withCloseButton
+            onClose={onAlertClose}
+          >
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque
+            deleniti consequuntur ratione quos? Iste quo, hic expedita totam
+            voluptatum ex ea perspiciatis? Explicabo expedita iste maiores
+            corporis ullam dolore earum!
+          </Alert>
+        )}
 
-        <div className="p-4">
-          <MyButton type="success" buttonText="Dark"></MyButton>
-        </div>
-
-        {/* Using Mantine */}
-        <div>
-          <Button variant="filled" onClick={() => console.log('clicked')}>Button</Button>
-        </div>
-        <Button leftSection={<IconPhoto size={15} />} variant="default">
-          Gallery
+        <Button variant="filled" onClick={onButtonClick}>
+          Show Alert
         </Button>
-      </MantineProvider>
-    </>
+      </div>
+    </MantineProvider>
   );
 }
 
