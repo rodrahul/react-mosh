@@ -1,15 +1,13 @@
 import { useState } from "react";
 
-function ListGroup() {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+interface Props {
+  items: string[];
+  heading: string;
+}
 
-  const items = [
-    "An Item",
-    "A second Item",
-    "A third Item",
-    "A fourth Item",
-    "And a fifth Item",
-  ];
+function ListGroup({ items, heading }: Props) {
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
   const clickListItem = (value: string, index: number) => {
     console.log(value + " " + index);
     setSelectedIndex(index);
@@ -17,6 +15,8 @@ function ListGroup() {
 
   return (
     <div className="mx-auto max-w-md p-4">
+      <h1 className="mb-2 text-center text-lg font-bold">{heading}</h1>
+      {items.length === 0 && <p>No items found</p>}
       <ul className="list-group">
         {items.map((value, index) => (
           <li
