@@ -1,7 +1,7 @@
 import { Alert, Button, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
-import { IconInfoCircle } from "@tabler/icons-react";
 import { useState } from "react";
+import { TbInfoCircle } from "react-icons/tb";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -14,7 +14,8 @@ function App() {
   const onAlertClose = () => {
     setAlertVisible(false);
   };
-  const infoIcon = <IconInfoCircle></IconInfoCircle>
+  // const infoIcon = <IconInfoCircle></IconInfoCircle>
+  const infoIcon = <TbInfoCircle size={20}></TbInfoCircle>
 
   return (
     <MantineProvider>
