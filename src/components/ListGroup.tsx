@@ -1,6 +1,8 @@
-import { MouseEvent } from "react";
+import { useState } from "react";
 
 function ListGroup() {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
   const items = [
     "An Item",
     "A second Item",
@@ -8,20 +10,22 @@ function ListGroup() {
     "A fourth Item",
     "And a fifth Item",
   ];
-
-  const clickListItem = (value: string, event: MouseEvent) => {
-    console.log(value);
-    console.log(event);
+  const clickListItem = (value: string, index: number) => {
+    console.log(value + " " + index);
+    setSelectedIndex(index);
   };
 
   return (
     <div className="mx-auto max-w-md p-4">
       <ul className="list-group">
-        {items.map((value) => (
-          <li key={value} className="mb-2 border p-4 shadow-lg">
+        {items.map((value, index) => (
+          <li
+            key={value}
+            className={`mb-2 border shadow-lg ${selectedIndex === index ? "bg-blue-500" : "bg-white"}`}
+          >
             <button
-              className="w-full text-left"
-              onClick={(event) => clickListItem(value, event)}
+              className="w-full p-4 text-left"
+              onClick={() => clickListItem(value, index)}
             >
               {value}
             </button>
