@@ -10,9 +10,10 @@ export interface ButtonProps {
     | "light"
     | "dark";
   buttonText: string;
+  onClick: () => void;
 }
 
-const MyButton = ({ type, buttonText }: ButtonProps) => {
+const MyButton = ({ type, buttonText, onClick }: ButtonProps) => {
   let buttonClass = "";
 
   switch (type) {
@@ -53,6 +54,7 @@ const MyButton = ({ type, buttonText }: ButtonProps) => {
   return (
     <button
       className={`rounded-md p-2 pl-4 pr-4 text-center text-lg ${buttonClass}`}
+      onClick={onClick}
     >
       {buttonText}
     </button>
