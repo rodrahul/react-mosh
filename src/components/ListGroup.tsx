@@ -10,7 +10,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
   // State to track which item is selected
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  const clickListItem = (value: string, index: number) => {
+  const handleListClick = (value: string, index: number) => {
     setSelectedIndex(index);
     onSelectItem(value);
   };
@@ -27,7 +27,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
           >
             <button
               className="w-full p-4 text-left"
-              onClick={() => clickListItem(value, index)}
+              onClick={() => handleListClick(value, index)}
             >
               {value}
             </button>
@@ -39,3 +39,31 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
 }
 
 export default ListGroup;
+
+/**
+
+function App() {
+  let items = [
+    "New York, USA",
+    "Tokyo, Japan",
+    "Paris, France",
+    "Sydney, Australia",
+    "Cape Town, South Africa",
+  ];
+
+  const onListItemSelect = (item: string) => {
+    console.log("Selected Item: " + item);
+  };
+
+  return (
+    <div>
+      <ListGroup
+        items={items}
+        heading="Cities"
+        onSelectItem={onListItemSelect}
+      ></ListGroup>
+    </div>
+  );
+}
+
+*/
