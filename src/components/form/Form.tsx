@@ -1,16 +1,20 @@
-import { useForm, FieldValues } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
 
-interface FormData {
-  name: string;
-  age: number;
-}
+const schema = z.object({
+  name: z.string().min(3, { message: "Name must atleast 3 characters" }),
+  age: z.number({ invalid_type_error: "Age field is required" }).min(18),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const Form = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   console.log(errors);
 
@@ -27,17 +31,12 @@ const Form = () => {
           </label>
           <input
             className="rounded-md border border-solid border-gray-400 p-4"
-            {...register("name", { required: true, minLength: 3 })}
+            {...register("name")}
             id="name"
             type="text"
           />
-          {errors.name?.type == "required" && (
-            <p className="text-xs text-red-500">The name field is required</p>
-          )}
-          {errors.name?.type == "minLength" && (
-            <p className="text-xs text-red-500">
-              Name must be at least three characters long
-            </p>
+          {errors.name && (
+            <p className="text-xs text-red-500">{errors.name.message}</p>
           )}
         </div>
         <div className="mb-3 flex flex-col">
@@ -47,13 +46,11 @@ const Form = () => {
           <input
             className="rounded-md border border-solid border-gray-400 p-2"
             id="age"
-            {...register("age", { required: true, min: 1 })}
+            {...register("age", { valueAsNumber: true })}
             type="number"
           />
-          {errors.age?.type == "min" && (
-            <p className="text-xs text-red-500">
-              Age must be a positive number
-            </p>
+          {errors.age && (
+            <p className="text-xs text-red-500">{errors.age.message}</p>
           )}
         </div>
         <button className="text-md rounded-md bg-blue-500 p-2 pl-4 pr-4 text-center text-white hover:bg-blue-600 active:bg-blue-700">
