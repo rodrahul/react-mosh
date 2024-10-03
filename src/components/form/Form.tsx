@@ -13,7 +13,7 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   console.log(errors);
@@ -53,7 +53,10 @@ const Form = () => {
             <p className="text-xs text-red-500">{errors.age.message}</p>
           )}
         </div>
-        <button className="text-md rounded-md bg-blue-500 p-2 pl-4 pr-4 text-center text-white hover:bg-blue-600 active:bg-blue-700">
+        <button
+          className="text-md rounded-md bg-blue-500 p-2 pl-4 pr-4 text-center text-white hover:bg-blue-600 active:bg-blue-700 disabled:bg-gray-300"
+          disabled={!isValid}
+        >
           {" "}
           Submit{" "}
         </button>
