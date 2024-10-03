@@ -1,13 +1,20 @@
-import { FormEvent, InputHTMLAttributes, useRef } from "react";
+import { FormEvent, useRef } from "react";
 
 const Form = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
 
+  const person = {
+    name: "",
+    age: 0,
+  };
+
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    if (nameRef.current) console.log(nameRef.current.value);
-    if (ageRef.current) console.log(ageRef.current.value);
+    if (nameRef.current) person.name = nameRef.current.value;
+    if (ageRef.current) person.age = parseInt(ageRef.current.value);
+
+    console.log(person);
   };
 
   return (
