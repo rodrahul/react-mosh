@@ -1,12 +1,12 @@
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
-import Form from "./components/form/Form";
+import ExpenseTrackerApp from "./expense-tracker/ExpenseTrackerApp";
 
 function App() {
   return (
     <MantineProvider>
       <div className="mx-auto max-w-md p-4">
-        <Form></Form>
+        <ExpenseTrackerApp></ExpenseTrackerApp>
       </div>
     </MantineProvider>
   );
