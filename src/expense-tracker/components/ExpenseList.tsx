@@ -33,11 +33,9 @@ const ExpenseList = ({ expenses, onDelete }: Props) => {
               <Table.Td>{expense.amount}</Table.Td>
               <Table.Td>{expense.category}</Table.Td>
               <Table.Td>
-                <IconTrash
-                  color="red"
-                  size={20}
-                  onClick={() => onDelete(expense.id)}
-                ></IconTrash>
+                <button onClick={() => onDelete(expense.id)}>
+                  <IconTrash color="red" size={20}></IconTrash>
+                </button>
               </Table.Td>
             </Table.Tr>
           ))}
