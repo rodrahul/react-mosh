@@ -1,15 +1,15 @@
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ProductListApp from "./components/product-list/ProductListApp";
+import FetchData from "./components/use-effect/FetchData";
 
 function App() {
   return (
-    <MantineProvider>
+    // <MantineProvider>
       <div className="mx-auto max-w-md p-4">
-        <ProductListApp></ProductListApp>
+        <FetchData></FetchData>
       </div>
-    </MantineProvider>
+    // </MantineProvider>
   );
 }
 
