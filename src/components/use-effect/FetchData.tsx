@@ -1,6 +1,6 @@
-import axios, { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import Alert from "../Alert";
+import apiClients, { CanceledError } from "../../services/api-clients";
 
 interface User {
   id: number;
@@ -15,8 +15,8 @@ const FetchData = () => {
   useEffect(() => {
     const controller = new AbortController();
     setIsLoading(true);
-    axios
-      .get<User[]>("https://jsonplaceholder.typicode.com/users", {
+    apiClients
+      .get<User[]>("/users", {
         signal: controller.signal,
       })
       .then((res) => {
@@ -36,12 +36,10 @@ const FetchData = () => {
   const deleteUser = (userToDelete: User) => {
     const originalUsers = [...users];
     setUsers(users.filter((user) => user.id !== userToDelete.id));
-    axios
-      .delete("https://jsonplaceholder.typicode.com/users/" + userToDelete.id)
-      .catch((err) => {
-        setError(err.message);
-        setUsers(originalUsers);
-      });
+    apiClients.delete("/users/" + userToDelete.id).catch((err) => {
+      setError(err.message);
+      setUsers(originalUsers);
+    });
   };
 
   const addUser = () => {
@@ -49,8 +47,8 @@ const FetchData = () => {
     const newUser = { id: 0, name: "Rahul" };
     setUsers([...users, newUser]);
 
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", newUser)
+    apiClients
+      .post("/users", newUser)
       .then(({ data: savedUser }) => {
         setUsers([...users, savedUser]);
         setIsLoading(false);
@@ -66,15 +64,10 @@ const FetchData = () => {
     const updatedUser = { ...user, name: user.name + " updated" };
     setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
 
-    axios
-      .patch(
-        "https://jsonplaceholder.typicode.com/users/" + user.id,
-        updatedUser,
-      )
-      .catch((err) => {
-        setError(err.message);
-        setUsers(originalUsers);
-      });
+    apiClients.patch("/users/" + user.id, updatedUser).catch((err) => {
+      setError(err.message);
+      setUsers(originalUsers);
+    });
   };
 
   return (
