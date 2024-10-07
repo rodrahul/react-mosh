@@ -13,7 +13,7 @@ const schema = z.object({
     .min(1, { message: "Amount must be at least 1" }),
   category: z.enum(categories, {
     errorMap: () => ({ message: "Category is required" }),
-  }),
+  })
 });
 
 type ExpenseFormData = z.infer<typeof schema>;
