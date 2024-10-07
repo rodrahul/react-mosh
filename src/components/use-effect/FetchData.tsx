@@ -44,10 +44,30 @@ const FetchData = () => {
       });
   };
 
+  const addUser = () => {
+    const originalUsers = [...users];
+    const newUser = { id: 0, name: "Rahul" };
+    setUsers([...users, newUser]);
+
+    axios
+      .post("https://jsonplaceholder.typicode.com/users", newUser)
+      .then(({ data: savedUser}) => {
+        setUsers([...users, savedUser]);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setUsers(originalUsers);
+      });
+  };
+
   return (
     <>
       {error && <Alert message={error} type="error"></Alert>}
       {isLoading && <div className="spinner-border"></div>}
+      <button className="btn btn-primary mb-3" onClick={addUser}>
+        Add
+      </button>
       <ul className="list-group">
         {users.map((user) => (
           <li className="list-group-item flex justify-between" key={user.id}>
