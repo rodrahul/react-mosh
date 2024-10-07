@@ -51,10 +51,26 @@ const FetchData = () => {
 
     axios
       .post("https://jsonplaceholder.typicode.com/users", newUser)
-      .then(({ data: savedUser}) => {
+      .then(({ data: savedUser }) => {
         setUsers([...users, savedUser]);
         setIsLoading(false);
       })
+      .catch((err) => {
+        setError(err.message);
+        setUsers(originalUsers);
+      });
+  };
+
+  const updateUser = (user: User) => {
+    const originalUsers = [...users];
+    const updatedUser = { ...user, name: user.name + " updated" };
+    setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
+
+    axios
+      .patch(
+        "https://jsonplaceholder.typicode.com/users/" + user.id,
+        updatedUser,
+      )
       .catch((err) => {
         setError(err.message);
         setUsers(originalUsers);
@@ -72,12 +88,20 @@ const FetchData = () => {
         {users.map((user) => (
           <li className="list-group-item flex justify-between" key={user.id}>
             {user.name}
-            <button
-              className="btn btn-outline-danger"
-              onClick={() => deleteUser(user)}
-            >
-              Delete
-            </button>
+            <div className="flex justify-between gap-2">
+              <button
+                className="btn btn-outline-secondary"
+                onClick={() => updateUser(user)}
+              >
+                Update
+              </button>
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => deleteUser(user)}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
