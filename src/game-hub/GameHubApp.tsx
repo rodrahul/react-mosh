@@ -1,9 +1,32 @@
-import { Button } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 
 const GameHubApp = () => {
   return (
     <div>
-      <Button colorScheme="blue">Button</Button>
+      {/* Grid with two rows
+          row1: nav nav
+          row2: aside main 
+          `"nav nav" "aside main"`
+      */}
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
+      >
+        <GridItem area="nav" bg="coral">
+          Nav
+        </GridItem>
+        {/* Aside panel is only rendred on large devices */}
+        <Show above="lg">
+          <GridItem area="aside" bg="gold">
+            Aside
+          </GridItem>
+        </Show>
+        <GridItem area="main" bg="dodgerblue">
+          Main
+        </GridItem>
+      </Grid>
     </div>
   );
 };
