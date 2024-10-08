@@ -1,4 +1,5 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
 
 const GameHubApp = () => {
   return (
@@ -14,8 +15,8 @@ const GameHubApp = () => {
           lg: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area="nav" bg="coral">
-          Nav
+        <GridItem area="nav">
+          <NavBar></NavBar>
         </GridItem>
         {/* Aside panel is only rendred on large devices */}
         <Show above="lg">
