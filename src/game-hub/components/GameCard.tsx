@@ -12,7 +12,9 @@ const GameCard = ({ game }: Props) => {
   return (
     <>
       <Card>
-        <Image src={getCroppedImageUrl(game.background_image)}></Image>
+        {/* TODO revert back */}
+        {/* <Image src={getCroppedImageUrl(game.background_image)}></Image> */}
+        <Image src='https://d3jmn01ri1fzgl.cloudfront.net/photoadking/webp_original/casablanca-gaming-youtube-thumbnail-template-dh62a1c21a4080.webp'></Image>
         <CardBody>
           <Heading fontSize={"2xl"}>{game.name}</Heading>
 
