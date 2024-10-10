@@ -1,9 +1,9 @@
 import { genres } from "../genreData";
-import useGenres from "../hooks/useGenres";
+import useGenres, { Genre } from "../hooks/useGenres";
 
 const GenreList = () => {
   // TODO Uncomment this
-  // const { genres } = useGenres();
+  // const { data: genres } = useGenres();
 
   return (
     <ul>
