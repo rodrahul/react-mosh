@@ -1,9 +1,17 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
+import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import NavBar from "./components/NavBar";
+import { Genre } from "./hooks/useGenres";
 
 const GameHubApp = () => {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
+  const onSelectGenre = (genre: Genre) => {
+    setSelectedGenre(genre);
+  };
+
   return (
     <div>
       {/* Grid with two rows
@@ -27,11 +35,11 @@ const GameHubApp = () => {
         {/* Aside panel is only rendred on large devices */}
         <Show above="lg">
           <GridItem area="aside" paddingX={5}>
-            <GenreList></GenreList>
+            <GenreList onSelectGenre={onSelectGenre}></GenreList>
           </GridItem>
         </Show>
         <GridItem area="main">
-          <GameGrid />
+          <GameGrid selectedGenre={selectedGenre} />
         </GridItem>
       </Grid>
     </div>
