@@ -35,7 +35,7 @@ const GameHubApp = () => {
         {/* Aside panel is only rendred on large devices */}
         <Show above="lg">
           <GridItem area="aside" paddingX={5}>
-            <GenreList onSelectGenre={onSelectGenre}></GenreList>
+            <GenreList selectedGenre={selectedGenre} onSelectGenre={onSelectGenre}></GenreList>
           </GridItem>
         </Show>
         <GridItem area="main">
