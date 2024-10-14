@@ -4,9 +4,19 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import NavBar from "./components/NavBar";
 import { Genre } from "./hooks/useGenres";
+import { Platform } from "./hooks/usePlatform";
+import PlatformSelector from "./components/PlatformSelector";
+import { platforms } from "./platformsData";
 
 const GameHubApp = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null,
+  );
+
+  const onSelectPlatform = (platform: Platform) => {
+    setSelectedPlatform(platform);
+  };
 
   const onSelectGenre = (genre: Genre) => {
     setSelectedGenre(genre);
@@ -35,11 +45,21 @@ const GameHubApp = () => {
         {/* Aside panel is only rendred on large devices */}
         <Show above="lg">
           <GridItem area="aside" paddingX={5}>
-            <GenreList selectedGenre={selectedGenre} onSelectGenre={onSelectGenre}></GenreList>
+            <GenreList
+              selectedGenre={selectedGenre}
+              onSelectGenre={onSelectGenre}
+            ></GenreList>
           </GridItem>
         </Show>
         <GridItem area="main">
-          <GameGrid selectedGenre={selectedGenre} />
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={onSelectPlatform}
+          ></PlatformSelector>
+          <GameGrid
+            selectedPlatform={selectedPlatform}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       </Grid>
     </div>
