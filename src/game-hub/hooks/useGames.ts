@@ -1,6 +1,7 @@
 import { GameQuery } from "../GameHubApp";
 import useData from "./useData";
 import { Platform } from "./usePlatform";
+import { games } from "../data/gamesData";
 
 export interface Game {
   id: number;
@@ -11,17 +12,18 @@ export interface Game {
   rating_top: number;
 }
 
-const useGames = (gameQuery: GameQuery) => useData<Game>
-  ("/games",
-    {
-      params:
-      {
-        genres: gameQuery.genre?.id,
-        parent_platforms: gameQuery.platform?.id,
-        ordering: gameQuery.sortOrder,
-        search: gameQuery.searchText
-      }
-    }, [gameQuery])
-
+// TODO Uncomment this
+// const useGames = (gameQuery: GameQuery) => useData<Game>
+//   ("/games",
+//     {
+//       params:
+//       {
+//         genres: gameQuery.genre?.id,
+//         parent_platforms: gameQuery.platform?.id,
+//         ordering: gameQuery.sortOrder,
+//         search: gameQuery.searchText
+//       }
+//     }, [gameQuery])
+const useGames = (gameQuery: GameQuery) => ({ data: games, isLoading: false, error: null });
 
 export default useGames;

@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 import { Genre } from "./hooks/useGenres";
 import { Platform } from "./hooks/usePlatform";
 import PlatformSelector from "./components/PlatformSelector";
-import { platforms } from "./platformsData";
+import { platforms } from "./data/platformsData";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
