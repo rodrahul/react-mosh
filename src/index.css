@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Set all form width to 100% */
+form {
+  width: 100%;
+}

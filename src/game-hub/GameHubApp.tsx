@@ -13,6 +13,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string;
 }
 
 const GameHubApp = () => {
@@ -20,6 +21,7 @@ const GameHubApp = () => {
     genre: null,
     platform: null,
     sortOrder: "",
+    searchText: "",
   });
 
   const onSelectPlatform = (platform: Platform) => {
@@ -32,6 +34,10 @@ const GameHubApp = () => {
 
   const onSelectSortOrder = (sortOrder: string) => {
     setGameQuery({ ...gameQuery, sortOrder });
+  };
+
+  const onSearch = (searchText: string) => {
+    setGameQuery({ ...gameQuery, searchText });
   };
 
   return (
@@ -52,7 +58,7 @@ const GameHubApp = () => {
         }}
       >
         <GridItem area="nav">
-          <NavBar></NavBar>
+          <NavBar onSearch={onSearch}></NavBar>
         </GridItem>
         {/* Aside panel is only rendred on large devices */}
         <Show above="lg">
