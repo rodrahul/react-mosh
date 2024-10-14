@@ -14,11 +14,9 @@ const GameCard = ({ game }: Props) => {
       <Card>
         {/* TODO revert back */}
         {/* <Image src={getCroppedImageUrl(game.background_image)}></Image> */}
-        <Image src='https://d3jmn01ri1fzgl.cloudfront.net/photoadking/webp_original/casablanca-gaming-youtube-thumbnail-template-dh62a1c21a4080.webp'></Image>
+        <Image src="https://d3jmn01ri1fzgl.cloudfront.net/photoadking/webp_original/casablanca-gaming-youtube-thumbnail-template-dh62a1c21a4080.webp"></Image>
         <CardBody>
-          <Heading fontSize={"2xl"}>{game.name}</Heading>
-
-          <HStack justifyContent="space-between">
+          <HStack justifyContent="space-between" marginBottom={3}>
             {/* Show game console icons */}
             <PlatformIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
@@ -27,6 +25,8 @@ const GameCard = ({ game }: Props) => {
             {/* Show critic score */}
             <CriticScore score={game.metacritic}></CriticScore>
           </HStack>
+
+          <Heading fontSize={"2xl"}>{game.name}</Heading>
         </CardBody>
       </Card>
     </>
