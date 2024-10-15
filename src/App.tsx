@@ -3,7 +3,7 @@ import { MantineProvider } from "@mantine/core";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FetchData from "./components/use-effect/FetchData";
 import GameHubApp from "./game-hub/GameHubApp";
-import ReactQueryApp from "./react-query/ReactQuery";
+import ReactQueryApp from "./react-query/ReactQueryApp";
 
 function App() {
   return (
